@@ -1,17 +1,21 @@
-﻿Function Get-CounterData
-{
-  Param(
-        $Data,
-        $MaxSamples =1,
-        $SampleInterval = 1
-        )
+﻿Function Get-CounterData {
+    Param(
+        [parameter(Mandatory = $true)]
+        [ValidateSet("Processor", "Disk", "Memory")]
+        [string]$Data,
 
-    Switch($Data)
-       {
-          1 {$Counter = "\Processor(_total)\% Processor Time"}
-          2 {$Counter = "\PhysicalDisk(0*)\% Disk Time"}
-          3 {$Counter = "\Memory\Page Faults/sec"}
-       }
-       Get-Counter -Counter $Counter -MaxSamples $MaxSamples -SampleInterval $SampleInterval
+        [ValidateRange(1, 10)]
+        [long]$MaxSamples = 1,
+
+        [ValidateRange(1, 10)]
+        [int]$SampleInterval = 1
+    )
+
+    Switch ($Data) {
+        "Processor" { $Counter = "\Processor(_total)\% Processor Time" }
+        "Disk" { $Counter = "\PhysicalDisk(0*)\% Disk Time" }
+        "Memory" { $Counter = "\Memory\Page Faults/sec" }
+    }
+    Get-CounterData -Counter $Counter -MaxSamples $MaxSamples -SampleInterval $SampleInterval
 }
 
