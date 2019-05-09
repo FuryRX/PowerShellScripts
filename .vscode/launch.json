@@ -1,7 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
-
+/*
         {
             "type": "PowerShell",
             "request": "launch",
@@ -61,7 +61,7 @@
             "runspaceId": 1
         }
 
-        /*
+        */
 {
     "name": "Python: Current File (Integrated Terminal)",
     "type": "python",
@@ -125,7 +125,6 @@
     "console": "externalTerminal"
 }
 
-*/
     ]
 }
 
